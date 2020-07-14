@@ -13,6 +13,17 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: UseDotNet@2
+  inputs:
+    version: '5.0.x'
+    includePreviewVersions: true # Required for preview versions
+
+- task: UseDotNet@2
+  inputs:
+    version: '3.1.x'
+    packageType: runtime
+
+steps:
 - script: dotnet restore
   displayName: 'restaurando pacotes'
 
