@@ -25,7 +25,7 @@ steps:
     command: 'test'
     arguments: '--configuration $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/Coverage/'
     publishTestResults: true
-    projects: '**/tests/*.csproj'
+    projects: '/tests/**/*Tests.csproj'
 
 - task: PublishCodeCoverageResults@1
   displayName: 'Publish code coverage report'
