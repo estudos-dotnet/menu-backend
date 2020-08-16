@@ -16,6 +16,12 @@ variables:
 
 steps:
 
+- script: dotnet restore
+  displayName: 'Restore solution'
+
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'Build solution on: $(buildConfiguration)'
+
 - task: DotNetCoreCLI@2
   displayName: 'Run unit tests'
   inputs:
@@ -23,8 +29,19 @@ steps:
     projects: 'tests/**/*Tests.csproj'
     arguments: '--configuration $(buildConfiguration)'
 
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'Build on: $(buildConfiguration)'
+- task: DotNetCoreCLI@2
+  displayName: 'Publish --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: 'src/Menu.API/Menu.API.csproj'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifacts'
+  
+
 
  
 
