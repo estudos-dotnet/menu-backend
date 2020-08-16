@@ -20,6 +20,7 @@ steps:
   displayName: 'Run unit tests'
   inputs:
     command: 'test'
+    projects: 'tests/**/*Tests.csproj'
     arguments: '--configuration $(buildConfiguration)'
 
 - script: dotnet build --configuration $(buildConfiguration)
