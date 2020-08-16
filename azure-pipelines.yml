@@ -16,15 +16,15 @@ variables:
 
 steps:
 
-  - task: DotNetCoreCLI@2
-    displayName: 'Run unit tests'
-    inputs:
-      command: 'test'
-      projects: '/tests/**/*Tests.csproj'
-      arguments: '--configuration $(buildConfiguration)'
+- task: DotNetCoreCLI@2
+  displayName: 'Run unit tests'
+  inputs:
+    command: 'test'
+    projects: '/tests/**/*Tests.csproj'
+    arguments: '--configuration $(buildConfiguration)'
 
-  - script: dotnet build --configuration $(buildConfiguration)
-    displayName: 'Build on: $(buildConfiguration)'
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'Build on: $(buildConfiguration)'
 
 
 
