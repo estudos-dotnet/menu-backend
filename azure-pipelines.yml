@@ -14,15 +14,17 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Run unit tests'
-  inputs:
-    command: 'test'
-    projects: '/tests/**/*Tests.csproj'
-    arguments: '--configuration $(buildConfiguration)'
+steps:
 
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'Build on: $(buildConfiguration)'
+  - task: DotNetCoreCLI@2
+    displayName: 'Run unit tests'
+    inputs:
+      command: 'test'
+      projects: '/tests/**/*Tests.csproj'
+      arguments: '--configuration $(buildConfiguration)'
+
+  - script: dotnet build --configuration $(buildConfiguration)
+    displayName: 'Build on: $(buildConfiguration)'
 
 
 
